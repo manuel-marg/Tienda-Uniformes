@@ -85,7 +85,7 @@ $productos = $stmt->fetchAll();
                 <div class="space-y-2">
                     <label class="text-xs font-bold text-slate-400 uppercase tracking-widest"><?= $label ?></label>
                     <div class="flex flex-wrap gap-2">
-                        <?php foreach (['XS', 'S', 'M', 'L', 'XL', 'N/A'] as $t): ?>
+                        <?php foreach (['XS', 'S', 'M', 'L', 'XL'] as $t): ?>
                             <div class="flex-1 min-w-[50px]">
                                 <input type="radio" name="items[0][talla_<?= $key ?>]" id="items_0_<?= $key ?>_<?= $t ?>" value="<?= $t ?>" class="hidden pill-input" <?= $t == 'M' ? 'checked' : '' ?>>
                                 <label for="items_0_<?= $key ?>_<?= $t ?>" class="flex items-center justify-center h-12 rounded-xl border border-slate-200 text-sm font-black cursor-pointer transition-all active:scale-90">
@@ -163,7 +163,7 @@ $productos = $stmt->fetchAll();
         <div class="space-y-2">
             <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Talla Superior</label>
             <div class="flex flex-wrap gap-2">
-                <?php foreach (['XS', 'S', 'M', 'L', 'XL', 'N/A'] as $t): ?>
+                <?php foreach (['XS', 'S', 'M', 'L', 'XL'] as $t): ?>
                     <div class="flex-1 min-w-[50px]">
                         <input type="radio" name="items[{{INDEX}}][talla_superior]" id="items_{{INDEX}}_sup_<?= $t ?>" value="<?= $t ?>" class="hidden pill-input" <?= $t == 'M' ? 'checked' : '' ?>>
                         <label for="items_{{INDEX}}_sup_<?= $t ?>" class="flex items-center justify-center h-12 rounded-xl border border-slate-200 text-sm font-black cursor-pointer transition-all active:scale-90">
@@ -178,7 +178,7 @@ $productos = $stmt->fetchAll();
         <div class="space-y-2">
             <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Talla Inferior</label>
             <div class="flex flex-wrap gap-2">
-                <?php foreach (['XS', 'S', 'M', 'L', 'XL', 'N/A'] as $t): ?>
+                <?php foreach (['XS', 'S', 'M', 'L', 'XL'] as $t): ?>
                     <div class="flex-1 min-w-[50px]">
                         <input type="radio" name="items[{{INDEX}}][talla_inferior]" id="items_{{INDEX}}_inf_<?= $t ?>" value="<?= $t ?>" class="hidden pill-input" <?= $t == 'M' ? 'checked' : '' ?>>
                         <label for="items_{{INDEX}}_inf_<?= $t ?>" class="flex items-center justify-center h-12 rounded-xl border border-slate-200 text-sm font-black cursor-pointer transition-all active:scale-90">
