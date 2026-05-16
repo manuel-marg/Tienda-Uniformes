@@ -63,41 +63,42 @@ include 'header.php';
         <h2 class="text-sm font-black text-slate-400 uppercase tracking-widest px-2">Detalles de Confección (<?= count($items) ?> uniformes)</h2>
         
         <?php foreach ($items as $idx => $item): ?>
-            <div class="bg-slate-900 text-white p-6 rounded-[2rem] shadow-xl relative overflow-hidden">
-                <div class="absolute -top-4 -right-4 opacity-5">
+            <div class="bg-white p-6 rounded-[2rem] shadow-sm border border-slate-100 relative overflow-hidden">
+                <!-- Número de ítem de fondo -->
+                <div class="absolute -top-4 -right-4 opacity-10 text-slate-300">
                     <span class="text-8xl font-black italic"><?= $idx + 1 ?></span>
                 </div>
 
-                <div class="border-b border-slate-800 pb-4 mb-4">
-                    <p class="text-blue-400 text-[10px] font-black uppercase tracking-[0.2em] mb-1">Uniforme #<?= $idx + 1 ?></p>
-                    <h3 class="text-xl font-black uppercase italic"><?= htmlspecialchars($item['producto_nombre']) ?></h3>
+                <div class="border-b border-slate-50 pb-4 mb-4">
+                    <p class="text-blue-600 text-[10px] font-black uppercase tracking-[0.2em] mb-1">Uniforme #<?= $idx + 1 ?></p>
+                    <h3 class="text-xl font-black uppercase italic text-slate-800"><?= htmlspecialchars($item['producto_nombre']) ?></h3>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4 mb-6">
-                    <div class="bg-slate-800/50 p-3 rounded-2xl border border-slate-700 text-center">
-                        <p class="text-slate-500 text-[9px] font-black uppercase mb-1">Talla Sup.</p>
-                        <span class="text-2xl font-black text-blue-400"><?= $item['talla_superior'] ?></span>
+                    <div class="bg-blue-50/50 p-3 rounded-2xl border border-blue-100 text-center">
+                        <p class="text-slate-400 text-[9px] font-black uppercase mb-1">Talla Sup.</p>
+                        <span class="text-2xl font-black text-blue-600"><?= $item['talla_superior'] ?></span>
                     </div>
-                    <div class="bg-slate-800/50 p-3 rounded-2xl border border-slate-700 text-center">
-                        <p class="text-slate-500 text-[9px] font-black uppercase mb-1">Talla Inf.</p>
-                        <span class="text-2xl font-black text-blue-400"><?= $item['talla_inferior'] ?></span>
+                    <div class="bg-blue-50/50 p-3 rounded-2xl border border-blue-100 text-center">
+                        <p class="text-slate-400 text-[9px] font-black uppercase mb-1">Talla Inf.</p>
+                        <span class="text-2xl font-black text-blue-600"><?= $item['talla_inferior'] ?></span>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-2 gap-4 mb-6">
                     <div>
-                        <p class="text-slate-500 text-[9px] font-black uppercase mb-1">Color / Tela</p>
-                        <p class="text-sm font-bold uppercase"><?= htmlspecialchars($item['color']) ?> / <?= htmlspecialchars($item['tela']) ?></p>
+                        <p class="text-slate-400 text-[9px] font-black uppercase mb-1">Color / Tela</p>
+                        <p class="text-sm font-bold uppercase text-slate-700"><?= htmlspecialchars($item['color']) ?> / <?= htmlspecialchars($item['tela']) ?></p>
                     </div>
                     <div class="text-right">
-                        <p class="text-slate-500 text-[9px] font-black uppercase mb-1">Cantidad</p>
-                        <p class="text-sm font-black italic text-yellow-400">x<?= $item['cantidad'] ?></p>
+                        <p class="text-slate-400 text-[9px] font-black uppercase mb-1">Cantidad</p>
+                        <p class="text-sm font-black italic text-blue-600">x<?= $item['cantidad'] ?></p>
                     </div>
                 </div>
 
-                <div class="bg-slate-800/80 p-4 rounded-2xl border-l-4 border-blue-500">
-                    <p class="text-blue-400 text-[9px] font-black uppercase tracking-widest mb-1 text-center">Notas de Bordado</p>
-                    <p class="text-xs font-medium leading-relaxed italic text-slate-300 text-center">
+                <div class="bg-slate-50 p-4 rounded-2xl border-l-4 border-blue-500">
+                    <p class="text-blue-600 text-[9px] font-black uppercase tracking-widest mb-1 text-center">Notas de Bordado</p>
+                    <p class="text-xs font-medium leading-relaxed italic text-slate-500 text-center">
                         "<?= nl2br(htmlspecialchars($item['estampado_bordado'] ?: 'Sin notas.')) ?>"
                     </p>
                 </div>
