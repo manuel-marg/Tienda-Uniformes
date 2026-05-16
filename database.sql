@@ -45,3 +45,13 @@ INSERT INTO productos (nombre, descripcion, precio_base) VALUES
 ('Filipina Quirúrgica Clásica', 'Cuello en V, tela antifluido básica.', 280.00),
 ('Pantalón Jogger Médico', 'Con resorte en tobillos y múltiples bolsas.', 220.00),
 ('Bata Médica Premium', 'Bata larga blanca de alta resistencia.', 450.00);
+-- 4. Tabla de Usuarios (Acceso al sistema)
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    nombre VARCHAR(100)
+) ENGINE=InnoDB;
+
+-- Usuario por defecto (usuario: admin, password: admin123)
+INSERT INTO usuarios (usuario, password, nombre) VALUES ('admin', 'admin123', 'Administrador');

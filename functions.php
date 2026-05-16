@@ -4,6 +4,22 @@
  * Este archivo se sincroniza con el repositorio Git.
  */
 
+// Iniciar sesión en todas las páginas que carguen funciones
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+/**
+ * Verifica si el usuario está logueado, de lo contrario redirige al login
+ */
+function checkAuth() {
+    // Si no existe la sesión de usuario y no estamos en la página de login
+    if (!isset($_SESSION['usuario_id']) && basename($_SERVER['PHP_SELF']) !== 'login.php') {
+        header("Location: login.php");
+        exit();
+    }
+}
+
 /**
  * Sanitiza entradas de texto para evitar ataques XSS
  */
