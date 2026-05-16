@@ -53,8 +53,7 @@ $pedidos = $stmt->fetchAll();
             <!-- Indicador lateral de estado -->
             <div class="absolute left-0 top-0 bottom-0 w-1.5 <?= 
                 $p['estado_pedido'] == 'Pendiente' ? 'bg-slate-300' : (
-                $p['estado_pedido'] == 'En Confección' ? 'bg-yellow-400' : (
-                $p['estado_pedido'] == 'Listo' ? 'bg-green-500' : 'bg-blue-500')) 
+                $p['estado_pedido'] == 'Listo' ? 'bg-green-500' : 'bg-blue-500') 
             ?>"></div>
 
             <div class="flex justify-between items-start pl-2">
@@ -80,6 +79,14 @@ $pedidos = $stmt->fetchAll();
                 </div>
                 
                 <div class="flex gap-2">
+                    <!-- Botón Eliminar -->
+                    <a href="eliminar-pedido.php?id=<?= $p['id'] ?>" 
+                       onclick="return confirm('¿Estás seguro de que deseas eliminar este pedido?')"
+                       class="bg-red-50 text-red-500 p-3.5 rounded-2xl active:scale-90 transition-transform">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                        </svg>
+                    </a>
                     <a href="<?= $ws_link ?>" target="_blank" class="bg-green-500 text-white p-3.5 rounded-2xl shadow-lg shadow-green-100 active:scale-90 transition-transform">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 2c-5.508 0-9.987 4.479-9.987 9.988 0 1.757.455 3.409 1.25 4.846l-1.328 4.852 4.966-1.303c1.405.765 3.007 1.201 4.71 1.201 5.508 0 9.988-4.479 9.988-9.988s-4.48-9.988-9.988-9.988zm5.952 14.281c-.244.686-1.42 1.311-1.956 1.384-.471.064-.91.082-1.464-.101-.321-.106-.723-.244-1.21-.444-2.07-.852-3.411-2.964-3.514-3.102-.104-.138-.847-1.127-.847-2.166 0-1.039.544-1.549.739-1.761.195-.212.423-.265.565-.265.141 0 .282.001.405.007.13.006.304-.049.476.362.177.422.607 1.481.659 1.589.053.108.088.235.016.381-.072.146-.108.235-.216.362-.108.127-.228.283-.325.381-.108.109-.221.228-.095.444.127.216.564.931 1.211 1.509.833.743 1.536.973 1.754 1.082.217.109.345.091.472-.055.127-.145.544-.633.689-.851.146-.217.292-.182.493-.109.201.073 1.275.602 1.497.712.222.11.369.164.423.254.054.091.054.526-.19 1.213z"/></svg>
                     </a>
