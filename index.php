@@ -60,7 +60,15 @@ $pedidos = $stmt->fetchAll();
             <div class="flex justify-between items-start pl-2">
                 <div>
                     <h3 class="font-black text-slate-800 text-lg leading-tight uppercase"><?= htmlspecialchars($p['cliente_nombre']) ?></h3>
-                    <p class="text-xs font-bold text-slate-400 mt-1"><?= date('d M, Y - h:i A', strtotime($p['fecha_registro'])) ?></p>
+                    <p class="text-xs font-bold text-slate-400 mt-1">
+                        <?= date('d M, Y', strtotime($p['fecha_registro'])) ?> 
+                        <?php 
+                            $stmt_count = $pdo->prepare("SELECT COUNT(*) FROM detalles_pedido WHERE pedido_id = ?");
+                            $stmt_count->execute([$p['id']]);
+                            $count = $stmt_count->fetchColumn();
+                        ?>
+                        • <span class="text-blue-500"><?= $count ?> <?= $count == 1 ? 'uniforme' : 'uniformes' ?></span>
+                    </p>
                 </div>
                 <?= getStatusBadge($p['estado_pedido']) ?>
             </div>
