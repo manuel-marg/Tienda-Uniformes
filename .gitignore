@@ -1,0 +1,7 @@
+# Archivos de configuración privada
+config.php
+
+# Archivos de sistema y entorno
+.DS_Store
+Thumbs.db
+*.log
