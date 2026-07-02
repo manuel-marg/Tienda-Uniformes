@@ -47,7 +47,7 @@ $pedidos = $stmt->fetchAll();
     <?php foreach ($pedidos as $p): 
         $ws_num = preg_replace('/[^0-9]/', '', $p['cliente_telefono']);
         $msg = "Hola {$p['cliente_nombre']}, tu pedido de uniformes está en estado: *{$p['estado_pedido']}*.";
-        $ws_link = "https://api.whatsapp.com/send?phone={$ws_num}&text=" . urlencode($msg);
+        $ws_link = "https://wa.me/{$ws_num}?text=" . urlencode($msg);
     ?>
         <div class="bg-white p-5 rounded-3xl shadow-sm border border-slate-50 flex flex-col gap-4 relative overflow-hidden group">
             <!-- Indicador lateral de estado -->
