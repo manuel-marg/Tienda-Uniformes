@@ -8,6 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cliente_nombre = cleanInput($_POST['cliente_nombre']);
         $cliente_telefono = cleanInput($_POST['cliente_telefono']);
         $metodo_entrega = cleanInput($_POST['metodo_entrega']);
+        $monto_abonado = isset($_POST['monto_abonado']) && $_POST['monto_abonado'] !== '' ? (float)$_POST['monto_abonado'] : 0;
         $items = $_POST['items'] ?? [];
 
         if (empty($items)) {
@@ -18,9 +19,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pdo->beginTransaction();
 
         // 3. Insertar Cabecera del Pedido (Total temporal en 0)
-        $sql_ped = "INSERT INTO pedidos (cliente_nombre, cliente_telefono, metodo_entrega, total) VALUES (?, ?, ?, ?)";
+        $sql_ped = "INSERT INTO pedidos (cliente_nombre, cliente_telefono, metodo_entrega, total, monto_abonado) VALUES (?, ?, ?, ?, ?)";
         $stmt_ped = $pdo->prepare($sql_ped);
-        $stmt_ped->execute([$cliente_nombre, $cliente_telefono, $metodo_entrega, 0]);
+        $stmt_ped->execute([$cliente_nombre, $cliente_telefono, $metodo_entrega, 0, $monto_abonado]);
         $pedido_id = $pdo->lastInsertId();
 
         $total_pedido = 0;

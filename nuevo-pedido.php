@@ -40,6 +40,16 @@ $productos = $stmt->fetchAll();
                 </select>
             </div>
         </div>
+        <!-- NUEVO CAMPO: Monto Cancelado -->
+        <div class="space-y-1 pt-1">
+            <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Monto Cancelado (Abono inicial)</label>
+            <div class="relative">
+                <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 font-bold">$</span>
+                <input type="number" step="0.01" min="0" name="monto_abonado" placeholder="0.00" 
+                    class="w-full h-12 pl-8 pr-4 rounded-xl border border-slate-200 text-base font-bold text-blue-600 focus:ring-2 focus:ring-blue-500 outline-none">
+            </div>
+            <p class="text-[10px] text-slate-400 mt-1">Déjalo en 0 o vacío si no han cancelado nada aún.</p>
+        </div>
     </div>
 
     <!-- Bloque 2: Contenedor de Uniformes -->
