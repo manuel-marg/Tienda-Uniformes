@@ -46,6 +46,12 @@ $pedidos = $stmt->fetchAll();
 
     <?php foreach ($pedidos as $p): 
         $ws_num = preg_replace('/[^0-9]/', '', $p['cliente_telefono']);
+        // Agregar código de país de Venezuela (58) si no lo tiene
+        if (strlen($ws_num) === 10 && substr($ws_num, 0, 2) !== '58') {
+            $ws_num = '58' . $ws_num;
+        } elseif (strlen($ws_num) === 11 && substr($ws_num, 0, 1) === '0') {
+            $ws_num = '58' . substr($ws_num, 1);
+        }
         $msg = "Hola {$p['cliente_nombre']}, tu pedido de uniformes está en estado: *{$p['estado_pedido']}*.";
         $ws_link = "https://wa.me/{$ws_num}?text=" . urlencode($msg);
     ?>
@@ -87,7 +93,7 @@ $pedidos = $stmt->fetchAll();
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                         </svg>
                     </a>
-                    <a href="<?= $ws_link ?>" target="_blank" class="bg-green-500 text-white p-3.5 rounded-2xl shadow-lg shadow-green-100 active:scale-90 transition-transform">
+                    <a href="<?= $ws_link ?>" class="bg-green-500 text-white p-3.5 rounded-2xl shadow-lg shadow-green-100 active:scale-90 transition-transform">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.012 2c-5.508 0-9.987 4.479-9.987 9.988 0 1.757.455 3.409 1.25 4.846l-1.328 4.852 4.966-1.303c1.405.765 3.007 1.201 4.71 1.201 5.508 0 9.988-4.479 9.988-9.988s-4.48-9.988-9.988-9.988zm5.952 14.281c-.244.686-1.42 1.311-1.956 1.384-.471.064-.91.082-1.464-.101-.321-.106-.723-.244-1.21-.444-2.07-.852-3.411-2.964-3.514-3.102-.104-.138-.847-1.127-.847-2.166 0-1.039.544-1.549.739-1.761.195-.212.423-.265.565-.265.141 0 .282.001.405.007.13.006.304-.049.476.362.177.422.607 1.481.659 1.589.053.108.088.235.016.381-.072.146-.108.235-.216.362-.108.127-.228.283-.325.381-.108.109-.221.228-.095.444.127.216.564.931 1.211 1.509.833.743 1.536.973 1.754 1.082.217.109.345.091.472-.055.127-.145.544-.633.689-.851.146-.217.292-.182.493-.109.201.073 1.275.602 1.497.712.222.11.369.164.423.254.054.091.054.526-.19 1.213z"/></svg>
                     </a>
                     <a href="ver-pedido.php?id=<?= $p['id'] ?>" class="bg-slate-900 text-white px-6 py-3.5 rounded-2xl font-bold text-sm active:scale-95 transition-transform flex items-center justify-center">
