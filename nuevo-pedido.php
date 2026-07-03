@@ -68,13 +68,20 @@ $productos = $stmt->fetchAll();
             </div>
 
             <div class="space-y-1">
-                <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Modelo de Uniforme</label>
+                <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Modelo de Uniforme (Principal)</label>
                 <select name="items[0][producto_id]" required class="w-full h-14 px-4 rounded-xl border border-slate-200 text-base bg-white focus:ring-2 focus:ring-blue-500 outline-none font-bold text-blue-600">
                     <option value="">-- Seleccione Modelo --</option>
                     <?php foreach ($productos as $p): ?>
                         <option value="<?= $p['id'] ?>"><?= htmlspecialchars($p['nombre']) ?> (<?= formatMoney($p['precio_base']) ?>)</option>
                     <?php endforeach; ?>
                 </select>
+            </div>
+            <!-- NUEVO CAMPO: Combinación de modelos -->
+            <div class="space-y-1">
+                <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">¿Combina modelos diferentes?</label>
+                <input type="text" name="items[0][combinacion_modelos]" placeholder="Ej: Camisa modelo X, Pantalón modelo Y"
+                    class="w-full h-12 px-4 rounded-xl border border-slate-200 text-base focus:ring-2 focus:ring-purple-500 outline-none">
+                <p class="text-[10px] text-slate-400 mt-1">Déjalo en blanco si el conjunto es del mismo modelo.</p>
             </div>
 
             <div class="grid grid-cols-2 gap-3">
@@ -146,15 +153,22 @@ $productos = $stmt->fetchAll();
             </button>
         </div>
 
-        <div class="space-y-1">
-            <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Modelo de Uniforme</label>
-            <select name="items[{{INDEX}}][producto_id]" required class="w-full h-14 px-4 rounded-xl border border-slate-200 text-base bg-white focus:ring-2 focus:ring-blue-500 outline-none font-bold text-blue-600">
-                <option value="">-- Seleccione Modelo --</option>
-                <?php foreach ($productos as $p): ?>
-                    <option value="<?= $p['id'] ?>"><?= htmlspecialchars($p['nombre']) ?> (<?= formatMoney($p['precio_base']) ?>)</option>
-                <?php endforeach; ?>
-            </select>
-        </div>
+            <div class="space-y-1">
+                <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">Modelo de Uniforme (Principal)</label>
+                <select name="items[{{INDEX}}][producto_id]" required class="w-full h-14 px-4 rounded-xl border border-slate-200 text-base bg-white focus:ring-2 focus:ring-blue-500 outline-none font-bold text-blue-600">
+                    <option value="">-- Seleccione Modelo --</option>
+                    <?php foreach ($productos as $p): ?>
+                        <option value="<?= $p['id'] ?>"><?= htmlspecialchars($p['nombre']) ?> (<?= formatMoney($p['precio_base']) ?>)</option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+            <!-- NUEVO CAMPO: Combinación de modelos (Plantilla JS) -->
+            <div class="space-y-1">
+                <label class="text-xs font-bold text-slate-400 uppercase tracking-widest">¿Combina modelos diferentes?</label>
+                <input type="text" name="items[{{INDEX}}][combinacion_modelos]" placeholder="Ej: Camisa modelo X, Pantalón modelo Y"
+                    class="w-full h-12 px-4 rounded-xl border border-slate-200 text-base focus:ring-2 focus:ring-purple-500 outline-none">
+                <p class="text-[10px] text-slate-400 mt-1">Déjalo en blanco si el conjunto es del mismo modelo.</p>
+            </div>
 
         <div class="grid grid-cols-2 gap-3">
             <div class="space-y-1">

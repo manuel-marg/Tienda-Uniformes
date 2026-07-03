@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $talla_superior = cleanInput($item['talla_superior']);
             $talla_inferior = cleanInput($item['talla_inferior']);
             $estampado_bordado = cleanInput($item['estampado_bordado']);
+            $combinacion_modelos = isset($item['combinacion_modelos']) ? cleanInput($item['combinacion_modelos']) : '';
             $cantidad = (int)$item['cantidad'];
 
             // Obtener precio del producto
@@ -47,8 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $total_pedido += $subtotal;
 
             // Insertar detalle
-            $sql_det = "INSERT INTO detalles_pedido (pedido_id, producto_id, color, talla_superior, talla_inferior, tela, estampado_bordado, cantidad, subtotal) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $sql_det = "INSERT INTO detalles_pedido (pedido_id, producto_id, color, talla_superior, talla_inferior, tela, estampado_bordado, combinacion_modelos, cantidad, subtotal) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stmt_det = $pdo->prepare($sql_det);
             $stmt_det->execute([
                 $pedido_id, 
@@ -58,6 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $talla_inferior, 
                 $tela, 
                 $estampado_bordado, 
+                $combinacion_modelos, 
                 $cantidad, 
                 $subtotal
             ]);
